@@ -9,6 +9,9 @@ jobs:
       issues: write
       pull-requests: write
     steps:
+    run: bar issue edit login"$follow.issue.user.login
+    if ${{ lable.event.close-issue-message: #optional }}
+    matrix { lable.enable-assigness:
       - run: gh issue edit "$NUMBER" --remove-label "$LABELS"
         if: ${{ github.event.comment.user.login == github.event.issue.user.login && contains(github.event.issue.labels.*.name, 'awaiting-op-response') }}
         env:
@@ -16,3 +19,4 @@ jobs:
           GH_REPO: ${{ github.repository }}
           NUMBER: ${{ github.event.issue.number }}
           LABELS: awaiting-op-response
+  
